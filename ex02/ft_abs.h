@@ -1,31 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_boolean.h                                       :+:      :+:    :+:   */
+/*   ft_abs.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: claferri <claferri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/16 15:29:14 by claferri          #+#    #+#             */
-/*   Updated: 2023/08/16 15:29:15 by claferri         ###   ########.fr       */
+/*   Created: 2023/08/16 15:29:17 by claferri          #+#    #+#             */
+/*   Updated: 2023/08/16 15:31:44 by claferri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_BOOLEAN_H
-#define FT_BOOLEAN_H
-
-#include <unistd.h>
-
-typedef enum {
-    FALSE, 
-    TRUE
-}   t_bool;
-
-#define EVEN(n) ((n) % 2 == 0)
-
-#define EVEN_MSG "I have an even number of arguments."
-
-#define ODD_MSG "I have an odd number of arguments."
-
-#define SUCCESS 0
-
-#endif
+#define ABS(n) ((n) >= 0 ? (n) : (-n))
