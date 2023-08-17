@@ -6,7 +6,7 @@
 /*   By: claferri <claferri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:35:19 by claferri          #+#    #+#             */
-/*   Updated: 2023/08/17 18:08:00 by claferri         ###   ########.fr       */
+/*   Updated: 2023/08/17 19:25:44 by claferri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 struct s_stock_str	*free_struct(int n, t_stock_str *table)
 {
-	while (n)
+	while (n >= 0)
 	{
 		free(table[n].copy);
 		n--;
@@ -41,7 +41,7 @@ struct s_stock_str	*ft_copy_strings(int ac, char **av, t_stock_str *table)
 		table[i].str = av[i];
 		table[i].copy = malloc((j + 1) * sizeof(char));
 		if (table[i].copy == NULL)
-			return (free_struct(i + 1, table));
+			return (free_struct(i, table));
 		j = 0;
 		while (av[i][j])
 		{
