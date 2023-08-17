@@ -6,17 +6,17 @@
 /*   By: claferri <claferri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:38:19 by claferri          #+#    #+#             */
-/*   Updated: 2023/08/17 09:38:20 by claferri         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:55:19 by claferri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_POINT_H
 
-#define FT_POINT_H
+# define FT_POINT_H
 
-typedef struct{
-	int x;
-	int y;
-} t_point;
+typedef struct t_point{
+	int	x;
+	int	y;
+}	t_point;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: claferri <claferri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:35:19 by claferri          #+#    #+#             */
-/*   Updated: 2023/08/17 16:27:22 by claferri         ###   ########.fr       */
+/*   Updated: 2023/08/17 18:08:00 by claferri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "ft_stock_str.h"
 
-struct s_stock_str *	free_struct(int n, t_stock_str * table)
+struct s_stock_str	*free_struct(int n, t_stock_str *table)
 {
 	while (n)
 	{
@@ -26,51 +26,58 @@ struct s_stock_str *	free_struct(int n, t_stock_str * table)
 	return (table);
 }
 
-
-struct s_stock_str *ft_strs_to_tab(int ac, char **av)
+struct s_stock_str	*ft_copy_strings(int ac, char **av, t_stock_str *table)
 {
-	int i;
-	int j;
-	int size;
-	struct s_stock_str *struct_table;
+	int	i;
+	int	j;
 
-// Get Size and allocate
-	i = 0;
-	j = 0;
-	size = 0;
-	struct_table = malloc((ac + 1) * sizeof(t_stock_str));
-	if (struct_table == NULL)
-			return (struct_table);
-// For each string write the struct
 	i = 0;
 	j = 0;
 	while (i < ac)
 	{
 		while (av[i][j])
 			j++;
-		struct_table[i].size = j + 1;
-		struct_table[i].str = av[i];
-		struct_table[i].copy = malloc((j + 1) * sizeof(char));
-// If fails - free all
-		if (struct_table[i].copy == NULL)
-			return (free_struct(i + 1, struct_table));
+		table[i].size = j + 1;
+		table[i].str = av[i];
+		table[i].copy = malloc((j + 1) * sizeof(char));
+		if (table[i].copy == NULL)
+			return (free_struct(i + 1, table));
 		j = 0;
 		while (av[i][j])
 		{
-			struct_table[i].copy[j] = av[i][j];
+			table[i].copy[j] = av[i][j];
 			j++;
 		}
-		struct_table[i].copy[j] = av[i][j];
+		table[i].copy[j] = av[i][j];
 		i++;
 	}
-// Last struct str is 0.
-	struct_table[i].str = NULL;
-	struct_table[i].copy = NULL;
-	struct_table[i].size = 0;
+	return (table);
+}
+
+struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
+{
+	int					i;
+	int					j;
+	int					size;
+	struct s_stock_str	*struct_table;
+
+	i = 0;
+	j = 0;
+	size = 0;
+	struct_table = NULL;
+	if (ac < 1)
+		return (struct_table);
+	struct_table = malloc((ac + 1) * sizeof(t_stock_str));
+	if (struct_table == NULL)
+		return (struct_table);
+	struct_table = ft_copy_strings(ac, av, struct_table);
+	struct_table[ac].str = NULL;
+	struct_table[ac].copy = NULL;
+	struct_table[ac].size = 0;
 	return (struct_table);
 }
 
-
+/*
 void display_tab(t_stock_str *tab) {
     int i = 0;
     while (tab[i].str) {
@@ -107,3 +114,4 @@ int main() {
 
     return 0;
 }
+*/
