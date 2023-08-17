@@ -1,2 +1,3 @@
 a.out
-main.c
+*main.c
+ex04/ft_stock_str.h
