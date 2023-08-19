@@ -6,11 +6,11 @@
 /*   By: claferri <claferri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 18:08:09 by claferri          #+#    #+#             */
-/*   Updated: 2023/08/17 18:44:30 by claferri         ###   ########.fr       */
+/*   Updated: 2023/08/19 11:25:15 by claferri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../ex04/ft_stock_str.h"
+#include "ft_stock_str.h"
 #include <stdlib.h>
 #include <unistd.h>
 

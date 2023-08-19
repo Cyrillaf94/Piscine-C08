@@ -6,7 +6,7 @@
 /*   By: claferri <claferri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/17 09:35:19 by claferri          #+#    #+#             */
-/*   Updated: 2023/08/17 19:28:29 by claferri         ###   ########.fr       */
+/*   Updated: 2023/08/19 11:48:38 by claferri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ struct s_stock_str	*ft_copy_strings(int ac, char **av, t_stock_str *table)
 	{
 		while (av[i][j])
 			j++;
-		table[i].size = j + 1;
+		table[i].size = j;
 		table[i].str = av[i];
 		table[i].copy = malloc((j + 1) * sizeof(char));
 		if (table[i].copy == NULL)
+			if (i )
 			return (free_struct(i - 1, table));
 		j = 0;
 		while (av[i][j])
@@ -65,7 +66,7 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 	j = 0;
 	size = 0;
 	struct_table = NULL;
-	if (ac < 1)
+	if (ac < 1 || *av == NULL)
 		return (struct_table);
 	struct_table = malloc((ac + 1) * sizeof(t_stock_str));
 	if (struct_table == NULL)
@@ -77,38 +78,43 @@ struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 	return (struct_table);
 }
 
-/*
-void display_tab(t_stock_str *tab) {
-    int i = 0;
-    while (tab[i].str) {
-        printf("Size: %d\n", tab[i].size);
-        printf("Str: %s\n", tab[i].str);
-        printf("Copy: %s\n\n", tab[i].copy);
-        i++;
-    }
+
+void print_result(t_stock_str *result, int ac) {
+    for (int i = 0; i < ac; i++) {
+        printf("Original: %s\n", result[i].str);
+        printf("Copy: %s\n", result[i].copy);
+        printf("Size: %d\n", result[i].size);
+        printf("----\n");
+	}
 }
 
+/*
 int main() {
-    char *samples[] = {
-        "apple",
-        "banana",
-        "cherry"
-    };
-    int size = sizeof(samples) / sizeof(samples[0]);
+    t_stock_str *result;
 
-    t_stock_str *result = ft_strs_to_tab(size, samples);
-
-    if (!result) {
-        printf("Error in memory allocation.\n");
-        return 1;
+    // Test 1: Zero arguments
+    printf("Test 1: Zero arguments\n");
+    result = ft_strs_to_tab(0, NULL);
+    if (result == NULL) {
+        printf("Result is NULL as expected\n");
     }
+    printf("------\n");
 
-    display_tab(result);
+    // Test 2: Single argument of zero length
+    printf("\nTest 2: Single argument of zero length\n");
+    char *av1[] = {""};
+    result = ft_strs_to_tab(1, av1);
+    print_result(result, 1);
+    free(result[0].copy);
+    free(result);
 
-    int i = 0;
-    while (result[i].str) {
+    // Test 3: Multiple arguments with some of zero length
+    printf("\nTest 3: Multiple arguments with some of zero length\n");
+    char *av2[] = {"hello", "", "world"};
+    result = ft_strs_to_tab(3, av2);
+    print_result(result, 3);
+    for (int i = 0; i < 3; i++) {
         free(result[i].copy);
-        i++;
     }
     free(result);
 

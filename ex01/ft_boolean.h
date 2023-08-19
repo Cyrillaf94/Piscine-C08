@@ -6,7 +6,7 @@
 /*   By: claferri <claferri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/16 15:29:14 by claferri          #+#    #+#             */
-/*   Updated: 2023/08/17 18:48:08 by claferri         ###   ########.fr       */
+/*   Updated: 2023/08/19 11:23:06 by claferri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 # define EVEN(n) ((n) % 2 == 0)
 
-# define EVEN_MSG "I have an even number of arguments."
+# define EVEN_MSG "I have an even number of arguments.\n"
 
-# define ODD_MSG "I have an odd number of arguments."
+# define ODD_MSG "I have an odd number of arguments.\n"
 
 # define SUCCESS 0
 
